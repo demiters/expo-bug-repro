@@ -35,7 +35,8 @@ jobs:
         # This is the condition that triggers the bug.
 
       - name: Build Android (expected to fail with Gradle 9.0.0)
-        run: ./android/gradlew app:assembleDebug --stacktrace
+        run: ./gradlew app:assembleDebug --stacktrace
+        working-directory: android
         # Expected failure:
         #   Error resolving plugin [id: 'com.facebook.react.settings']
         #   > Could not read workspace metadata from
