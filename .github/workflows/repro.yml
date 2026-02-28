@@ -24,9 +24,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        # Required: settings.gradle runs `node --print require.resolve(...)` at
-        # configuration time to locate @react-native/gradle-plugin and
-        # expo-modules-autolinking. Without node_modules these paths can't resolve.
+
+      - name: Run expo prebuild
+        run: npx expo prebuild --platform android --no-install
+        # Generates android/ including gradle-wrapper.properties pinned to Gradle 9.0.0
 
       - name: Clear Gradle cache
         run: rm -rf ~/.gradle/caches

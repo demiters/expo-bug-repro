@@ -20,11 +20,14 @@ git clone <this-repo>
 cd expo-bug-repro
 npm install
 
-# 2. Simulate a fresh machine by clearing the Gradle cache
+# 2. Generate native files (succeeds — this produces gradle-wrapper.properties pinned to 9.0.0)
+npx expo prebuild --clean
+
+# 3. Simulate a fresh machine by clearing the Gradle cache
 rm -rf ~/.gradle/caches
 
-# 3. Build Android
-./android/gradlew app:assembleDebug
+# 4. Build Android (fails)
+npx expo run:android
 ```
 
 The CI workflow (`.github/workflows/repro.yml`) reproduces this automatically — GitHub Actions runners start with an empty `~/.gradle/caches`.
